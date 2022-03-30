@@ -55,8 +55,8 @@ struct Daily: Codable {
     }
 }
 
-// current (actual or today) model
-struct Current: Codable {
+// today (actual or current) model
+struct Today: Codable {
     let temp: Double
     let pressure: Int
     let windSpeed: Double
@@ -72,13 +72,13 @@ struct Current: Codable {
     }
 }
 
-// current (actual or today) weather model
-struct CurrentWeather: Codable {
-    let current: Current
+// today (current or actual) weather model
+struct TodayWeather: Codable {
+    let today: Today
     let daily: [Daily]
     
     enum CodingKeys: String, CodingKey {
-        case current
+        case today
         case daily
     }
 }
