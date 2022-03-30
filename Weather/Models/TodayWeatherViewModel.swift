@@ -13,8 +13,8 @@ struct TodayWeatherViewModel {
     var icon: String
     var pressure: String
     var precipitation: String
-    var precipitayionIcon: String
+    var precipitationIcon: String
     var pop: String
     var location: String
-    var tempWithDescription: String
+    var tempWithDiscription: String
 }

@@ -9,8 +9,8 @@ import UIKit
 import Network
 
 protocol TodayWeatherViewProtocol: AnyObject {
-    func checkingInternetConnection(connection: Bool)
     func successGettingData(model: TodayWeatherViewModel)
+    func checkingInternetConnection(connection: Bool)
     func present(activityVC: UIActivityViewController)
     func failureGettingData()
     func failureGettingLocation()
@@ -42,10 +42,10 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
         icon: "",
         pressure: "",
         precipitation: "",
-        precipitayionIcon: "",
+        precipitationIcon: "",
         pop: "",
         location: "",
-        tempWithDescription: "")
+        tempWithDiscription: "")
     
     var location: Location? {
         didSet {
@@ -160,10 +160,10 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
             icon: todayWeather.today.weather[0].icon,
             pressure: "\(todayWeather.today.pressure)hPA",
             precipitation: precipitation[0],
-            precipitayionIcon: precipitation[1],
+            precipitationIcon: precipitation[1],
             pop: "\(Int(todayWeather.daily[0].pop * 100))%",
             location: "\(self.todayLocation?.city.name ?? "") \(self.todayLocation?.city.country ?? "")",
-            tempWithDescription: "\(Int(todayWeather.today.temp - 273))°C - \(todayWeather.today.weather[0].weatherDescription)")
+            tempWithDiscription: "\(Int(todayWeather.today.temp - 273))°C - \(todayWeather.today.weather[0].weatherDescription)")
         return todayWeatherForView
     }
     

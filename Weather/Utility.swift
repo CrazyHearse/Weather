@@ -33,7 +33,7 @@ func degreeToWindDirectionConv(degree: Int) -> String {
 func converterWeatherToTextFormat(weather: TodayWeatherViewModel) -> String {
     let text = """
         Today weather for \(weather.location):
-        Out of doors: \(weather.tempWithDescription)
+        Out of doors: \(weather.tempWithDiscription)
         Probability of precipitation: \(weather.pop)
         Precipitation: \(weather.precipitation)
         Wind speed: \(weather.windSpeed)
@@ -43,3 +43,24 @@ func converterWeatherToTextFormat(weather: TodayWeatherViewModel) -> String {
     return text
 }
 
+func lagWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+        completion()
+    }
+}
+
+func notInternetView(frame: CGRect) -> UIView {
+    let noInternetView = UIView(frame: frame)
+    let label = UILabel()
+
+    noInternetView.addSubview(label)
+
+    label.frame = CGRect(x: 0, y: 0, width: noInternetView.frame.size.width, height: 110)
+    label.center = noInternetView.center
+    label.text = "No internet connection\n\nPlease turn it ON"
+    label.numberOfLines = 0
+    label.textAlignment = .center
+    noInternetView.backgroundColor = UIColor(named: "backgroundColor")
+
+    return noInternetView
+}
