@@ -10,7 +10,7 @@ import UIKit
 class TodayWeatherVC: UIViewController {
     private let containerView = UIView()
     private let activityIndicator = UIActivityIndicatorView()
-    private let todayWeatherImage = UIImageView()
+    private let nowWeatherImage = UIImageView()
     private let locationLabel = UILabel()
     private let precipitationImage = UIImageView()
     private let popImage = UIImageView()
@@ -23,22 +23,22 @@ class TodayWeatherVC: UIViewController {
     private let windSpeedLabel = UILabel()
     private let poleLabel = UILabel()
     private let imageview = UIImageView()
-    private let shareButton = UIButton(type: .system)
+    private let shareButton = UIButton(type: .contactAdd)
 
     var presenter: TodayWeatherPresenter!
 
     private var todayWeather: TodayWeatherViewModel?
 
-    private lazy var todayWeatherLabel: UILabel = {
+    private lazy var nowWeatherLabel: UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 32)
+        label.font = .systemFont(ofSize: 30)
         label.adjustsFontSizeToFitWidth = true
-        label.minimumScaleFactor = 0.3
+        label.minimumScaleFactor = 0.2
         return label
     }()
 
     private lazy var noInternetView: UIView = {
-        let view = notInternetView(frame: view.safeAreaLayoutGuide.layoutFrame)
+        let view = gettingNoInternetView(frame: view.safeAreaLayoutGuide.layoutFrame)
         return view
     }()
 
@@ -54,7 +54,7 @@ class TodayWeatherVC: UIViewController {
         configUI()
     }
 
-    // Layouts
+    // MARK: - Layouts
     override func viewWillLayoutSubviews() {
         disableTranslAutoresMaskIntoConstraints()
         layoutViewItems()
@@ -63,7 +63,7 @@ class TodayWeatherVC: UIViewController {
         layoutButton()
     }
 
-    // Config elements
+    // MARK: - Config elements
     private func configUI() {
         addViews()
         configStyles()
@@ -77,15 +77,15 @@ class TodayWeatherVC: UIViewController {
         shareButton.addTarget(presenter, action: #selector(self.presenter.share), for: .touchUpInside)
     }
 
-    // Adding views
+    // MARK: - Adding views
     private func addViews() {
         view.addSubview(containerView)
         view.addSubview(activityIndicator)
         view.addSubview(noInternetView)
         [
-            todayWeatherImage,
+            nowWeatherImage,
             locationLabel,
-            todayWeatherLabel,
+            nowWeatherLabel,
             popImage,
             popLabel,
             precipitationImage,
@@ -100,15 +100,15 @@ class TodayWeatherVC: UIViewController {
         ].forEach( { containerView.addSubview($0) } )
     }
 
-    // Config styles
+    // MARK: - Config styles
     private func configStyles() {
         // Icons of weather parametrs config
-        popImage.image = UIImage(systemName: "cloud.rain")
-        precipitationImage.image = UIImage(systemName: "drop")
-        pressureImage.image = UIImage(systemName: "aqi.medium")
-        windSpeedImage.image = UIImage(systemName: "wind")
-        poleImage.image = UIImage(systemName: "globe")
-        todayWeatherImage.contentMode = .scaleAspectFit
+        popImage.image = UIImage(named: "9d")
+        precipitationImage.image = UIImage(named: "9d")
+        pressureImage.image = UIImage(named: "hpa")
+        windSpeedImage.image = UIImage(named: "50d")
+        poleImage.image = UIImage(named: "pole")
+        nowWeatherImage.contentMode = .scaleAspectFit
 
         // Activity indicator config
         activityIndicator.style = .large
@@ -120,14 +120,14 @@ class TodayWeatherVC: UIViewController {
 
         // Button config
         shareButton.setTitle("Share", for: .normal)
-        shareButton.tintColor = .systemRed
-
+        shareButton.tintColor = .orange
+        
         // Location lable config
-        todayWeatherLabel.textColor = .systemBlue
+        nowWeatherLabel.textColor = .systemGray
 
         // Lables text config
         [
-            todayWeatherLabel,
+            nowWeatherLabel,
             locationLabel,
             popLabel,
             precipitationLable,
@@ -142,7 +142,7 @@ class TodayWeatherVC: UIViewController {
         )
     }
 
-    // Alerts configer
+    // MARK: - Alerts configer
     private func getRequiredAlert(type: AlertType) -> UIAlertController {
         let title = "Error"
         let messege: String
@@ -150,7 +150,7 @@ class TodayWeatherVC: UIViewController {
 
         switch type {
         case .dataIsNotAvaible:
-            messege = "Can't get  current data from network"
+            messege = "Can't get actual data from network"
             action = UIAlertAction(
                 title: "Try again",
                 style: .cancel,
@@ -169,7 +169,7 @@ class TodayWeatherVC: UIViewController {
                 )
             }
         case .locationIsNotAvaible:
-            messege = "Can't get current location"
+            messege = "Can't get actual location"
             action = UIAlertAction(
                 title: "Try again",
                 style: .cancel,
@@ -183,7 +183,7 @@ class TodayWeatherVC: UIViewController {
         return alert
     }
 
-    // Updating view data
+    // MARK: - Updating view data
     private func updateData() {
         guard let weather = todayWeather else { return }
         popLabel.text = "\(weather.pop)"
@@ -192,13 +192,13 @@ class TodayWeatherVC: UIViewController {
         pressureLabel.text = "\(weather.pressure)"
         windSpeedLabel.text = "\(weather.windSpeed)"
         poleLabel.text = "\(weather.windDirection)"
-        todayWeatherLabel.text = "\(weather.tempWithDiscription)"
+        nowWeatherLabel.text = "\(weather.tempWithDescription)"
         locationLabel.text = "\(weather.location)"
-        todayWeatherImage.image = UIImage(named: weather.icon)
+        nowWeatherImage.image = UIImage(named: weather.icon)
     }
 }
 
-// Protocol methods
+// MARK: - Protocol methods
 extension TodayWeatherVC: TodayWeatherViewProtocol {
     func present(activityVC: UIActivityViewController) {
         self.present(
@@ -216,7 +216,7 @@ extension TodayWeatherVC: TodayWeatherViewProtocol {
         }
     }
 
-    func checkingInternetConnection(connection: Bool) {
+    func checkedInternetConnection(connection: Bool) {
         if connection {
             noInternetView.isHidden = true
         } else {
@@ -224,7 +224,7 @@ extension TodayWeatherVC: TodayWeatherViewProtocol {
         }
     }
 
-    func successGettingData(model: TodayWeatherViewModel) {
+    func succesGettingData(model: TodayWeatherViewModel) {
         todayWeather = model
         updateData()
     }
@@ -240,9 +240,24 @@ extension TodayWeatherVC: TodayWeatherViewProtocol {
     func locationIsDisabled() {
         present(getRequiredAlert(type: .locationDisabled), animated: true, completion: nil)
     }
+    func gettingNoInternetView(frame: CGRect) -> UIView {
+        let noIntrenetView = UIView(frame: frame)
+        let label = UILabel()
+
+        noIntrenetView.addSubview(label)
+
+        label.frame = CGRect(x: 0, y: 0, width: noIntrenetView.frame.size.width, height: 100)
+        label.center = noIntrenetView.center
+        label.text = "No internet connection\nPlease turn it ON"
+        label.numberOfLines = 0
+        label.textAlignment = .center
+        noIntrenetView.backgroundColor = UIColor(named: "backgroundColor")
+
+        return noIntrenetView
+    }
 }
 
-// Private layout methods
+// MARK: - Private layout methods
 private extension TodayWeatherVC {
     func layoutViewItems() {
         view.addConstraints(
@@ -261,9 +276,9 @@ private extension TodayWeatherVC {
 
     func disableTranslAutoresMaskIntoConstraints() {
         [
-            todayWeatherImage,
+            nowWeatherImage,
             locationLabel,
-            todayWeatherLabel,
+            nowWeatherLabel,
             popImage,
             precipitationImage,
             pressureImage,
@@ -292,10 +307,10 @@ private extension TodayWeatherVC {
 
         containerView.addConstraints(
             [
-                todayWeatherImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
-                todayWeatherImage.heightAnchor.constraint(equalToConstant: 5 * heightConst),
-                todayWeatherImage.widthAnchor.constraint(equalToConstant: 5 * heightConst),
-                todayWeatherImage.topAnchor.constraint(
+                nowWeatherImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
+                nowWeatherImage.heightAnchor.constraint(equalToConstant: 5 * heightConst),
+                nowWeatherImage.widthAnchor.constraint(equalToConstant: 5 * heightConst),
+                nowWeatherImage.topAnchor.constraint(
                     equalTo: containerView.topAnchor,
                     constant: 0.75 * heightConst
                 ),
@@ -361,12 +376,12 @@ private extension TodayWeatherVC {
                 locationLabel.heightAnchor.constraint(equalToConstant: 0.5 * heightConst),
                 locationLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
                 locationLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                todayWeatherLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor),
-                todayWeatherLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
-                todayWeatherLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
-                todayWeatherLabel.heightAnchor.constraint(equalToConstant: 1.5 * heightConst),
+                nowWeatherLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor),
+                nowWeatherLabel.leadingAnchor.constraint(equalTo: containerView.leadingAnchor),
+                nowWeatherLabel.trailingAnchor.constraint(equalTo: containerView.trailingAnchor),
+                nowWeatherLabel.heightAnchor.constraint(equalToConstant: 1.5 * heightConst),
                 locationLabel.topAnchor.constraint(
-                    equalTo: todayWeatherImage.bottomAnchor,
+                    equalTo: nowWeatherImage.bottomAnchor,
                     constant: 0.75 * heightConst
                 ),
                 popLabel.topAnchor.constraint(

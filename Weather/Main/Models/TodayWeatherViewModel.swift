@@ -8,13 +8,14 @@
 import Foundation
 
 struct TodayWeatherViewModel {
+    var location: String
+    var tempWithDescription: String
+    var pop: String
+    var precipitation: String
+    var precipitationIcon: String
+    var pressure: String
     var windSpeed: String
     var windDirection: String
     var icon: String
-    var pressure: String
-    var precipitation: String
-    var precipitationIcon: String
-    var pop: String
-    var location: String
-    var tempWithDiscription: String
 }
+

@@ -7,10 +7,10 @@
 
 import Foundation
 
-//key for openWeatherMap = 58bd69efeab05012a439738eaf288394
+//actual key for OpenWeatherMap: 58bd69efeab05012a439738eaf288394
 
 enum RequestType {
-    case today
+    case current
     case forecast
 }
 
@@ -25,7 +25,7 @@ class NetworkService {
         var url: String
 
         switch request {
-        case .today:
+        case .current:
             url = getURLForTodayWeatherRequest(location: location)
         case .forecast:
             url = getURLForForecastWeatherRequest(location: location)
@@ -47,6 +47,12 @@ class NetworkService {
         }.resume()
     }
 
+    private func getURLForForecastWeatherRequest(location: Location) -> String {
+        let locationParams = "lat=\(location.lat)&lon=\(location.lon)"
+        let apiParam = "&appid=58bd69efeab05012a439738eaf288394"
+        let url = "http://api.openweathermap.org/data/2.5/forecast?\(locationParams)\(apiParam)"
+        return url
+    }
     private func getURLForTodayWeatherRequest(location: Location) -> String {
         let locationParams = "lat=\(location.lat)&lon=\(location.lon)"
         let exclude = "&exclude=hourly,minutely,alerts"
@@ -54,13 +60,5 @@ class NetworkService {
         let url = "http://api.openweathermap.org/data/2.5/onecall?\(locationParams)\(exclude)\(apiParam)"
         return url
     }
-    
-    private func getURLForForecastWeatherRequest(location: Location) -> String {
-        let locationParams = "lat=\(location.lat)&lon=\(location.lon)"
-        let apiParam = "&appid=58bd69efeab05012a439738eaf288394"
-        let url = "http://api.openweathermap.org/data/2.5/forecast?\(locationParams)\(apiParam)"
-        return url
-    }
 }
-
 

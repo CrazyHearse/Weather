@@ -14,9 +14,9 @@ struct Location {
 }
 
 protocol LocationServiceDelegate: AnyObject {
-    func locationIsDisabled()
     func didUpdateLocation(location: Location)
     func didntUpdateLocation()
+    func locationIsDisabled()
 }
 
 class LocationService: NSObject, CLLocationManagerDelegate {
@@ -34,16 +34,27 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         locationManager.desiredAccuracy = kCLLocationAccuracyBest
     }
     
-    func requestLocation() { 
+    //MARK: -  Request call from TodayWeatherPresenter
+    func requestLocation() {
         locationManager.requestLocation()
     }
     
+    //MARK: - Start update call from ForecastWeatherPresenter
     func startUpdatingLocation() {
         locationManager.startUpdatingLocation()
     }
     
+    //MARK: - Stop update call from ForecastWeatherPresenter
     func stopUpdatingLocation() {
         locationManager.stopUpdatingLocation()
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        if let locValue = locations.last {
+            let location = Location(lat: locValue.coordinate.latitude, lon: locValue.coordinate.longitude)
+            self.delegate?.didUpdateLocation(location: location)
+            self.stopUpdatingLocation()
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
@@ -58,14 +69,13 @@ class LocationService: NSObject, CLLocationManagerDelegate {
         }
         print(error.localizedDescription)
     }
+}
+
+private extension LocationService {
     
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        if let locValue = locations.last {
-            let location = Location(lat: locValue.coordinate.latitude, lon: locValue.coordinate.longitude)
-            self.delegate?.didUpdateLocation(location: location)
-            self.stopUpdatingLocation()
+    func lagWithSeconds(_ seconds: Double, completion: @escaping () -> Void) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + seconds) {
+            completion()
         }
     }
-    
-    
 }

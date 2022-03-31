@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		F6E2365127F19A9E00F3ABC0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2365027F19A9E00F3ABC0 /* AppDelegate.swift */; };
-		F6E2365327F19A9E00F3ABC0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2365227F19A9E00F3ABC0 /* SceneDelegate.swift */; };
-		F6E2365527F19A9E00F3ABC0 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2365427F19A9E00F3ABC0 /* Utility.swift */; };
 		F6E2365D27F19AA000F3ABC0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F6E2365C27F19AA000F3ABC0 /* Assets.xcassets */; };
 		F6E2366027F19AA000F3ABC0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F6E2365E27F19AA000F3ABC0 /* LaunchScreen.storyboard */; };
 		F6E2366827F19F9000F3ABC0 /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2366727F19F9000F3ABC0 /* NetworkService.swift */; };
@@ -18,13 +16,17 @@
 		F6E2367127F37DBF00F3ABC0 /* TodayWeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367027F37DBF00F3ABC0 /* TodayWeatherVC.swift */; };
 		F6E2367427F444B100F3ABC0 /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367327F444B100F3ABC0 /* LocationService.swift */; };
 		F6E2367727F448B300F3ABC0 /* TodayWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367627F448B300F3ABC0 /* TodayWeatherPresenter.swift */; };
+		F6E2367927F4810C00F3ABC0 /* ForecastWeatherApiModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367827F4810C00F3ABC0 /* ForecastWeatherApiModel.swift */; };
+		F6E2367B27F481A400F3ABC0 /* ForecastWeatherViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367A27F481A400F3ABC0 /* ForecastWeatherViewModel.swift */; };
+		F6E2367D27F4828300F3ABC0 /* ForecastWeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367C27F4828300F3ABC0 /* ForecastWeatherVC.swift */; };
+		F6E2367F27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367E27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift */; };
+		F6E2368127F4839E00F3ABC0 /* ForecastWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2368027F4839E00F3ABC0 /* ForecastWeatherPresenter.swift */; };
+		F6E2368327F4841F00F3ABC0 /* BuilderModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2368227F4841F00F3ABC0 /* BuilderModules.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F6E2364D27F19A9E00F3ABC0 /* Weather.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Weather.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F6E2365027F19A9E00F3ABC0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F6E2365227F19A9E00F3ABC0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		F6E2365427F19A9E00F3ABC0 /* Utility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		F6E2365C27F19AA000F3ABC0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F6E2365F27F19AA000F3ABC0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F6E2366127F19AA000F3ABC0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -34,6 +36,12 @@
 		F6E2367027F37DBF00F3ABC0 /* TodayWeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherVC.swift; sourceTree = "<group>"; };
 		F6E2367327F444B100F3ABC0 /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		F6E2367627F448B300F3ABC0 /* TodayWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayWeatherPresenter.swift; sourceTree = "<group>"; };
+		F6E2367827F4810C00F3ABC0 /* ForecastWeatherApiModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherApiModel.swift; sourceTree = "<group>"; };
+		F6E2367A27F481A400F3ABC0 /* ForecastWeatherViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherViewModel.swift; sourceTree = "<group>"; };
+		F6E2367C27F4828300F3ABC0 /* ForecastWeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherVC.swift; sourceTree = "<group>"; };
+		F6E2367E27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherTableViewCell.swift; sourceTree = "<group>"; };
+		F6E2368027F4839E00F3ABC0 /* ForecastWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherPresenter.swift; sourceTree = "<group>"; };
+		F6E2368227F4841F00F3ABC0 /* BuilderModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderModules.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,13 +74,8 @@
 		F6E2364F27F19A9E00F3ABC0 /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				F6E2367227F4420C00F3ABC0 /* Services */,
-				F6E2366A27F3621200F3ABC0 /* Models */,
-				F6E2366F27F37D9200F3ABC0 /* View */,
-				F6E2367527F4480A00F3ABC0 /* Presenters */,
+				F6E2368427F489C300F3ABC0 /* Main */,
 				F6E2365027F19A9E00F3ABC0 /* AppDelegate.swift */,
-				F6E2365227F19A9E00F3ABC0 /* SceneDelegate.swift */,
-				F6E2365427F19A9E00F3ABC0 /* Utility.swift */,
 				F6E2365C27F19AA000F3ABC0 /* Assets.xcassets */,
 				F6E2365E27F19AA000F3ABC0 /* LaunchScreen.storyboard */,
 				F6E2366127F19AA000F3ABC0 /* Info.plist */,
@@ -85,16 +88,20 @@
 			children = (
 				F6E2366B27F3626A00F3ABC0 /* TodayWeatherApiModel.swift */,
 				F6E2366D27F3790700F3ABC0 /* TodayWeatherViewModel.swift */,
+				F6E2367827F4810C00F3ABC0 /* ForecastWeatherApiModel.swift */,
+				F6E2367A27F481A400F3ABC0 /* ForecastWeatherViewModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
 		};
-		F6E2366F27F37D9200F3ABC0 /* View */ = {
+		F6E2366F27F37D9200F3ABC0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				F6E2367027F37DBF00F3ABC0 /* TodayWeatherVC.swift */,
+				F6E2367C27F4828300F3ABC0 /* ForecastWeatherVC.swift */,
+				F6E2367E27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F6E2367227F4420C00F3ABC0 /* Services */ = {
@@ -110,8 +117,21 @@
 			isa = PBXGroup;
 			children = (
 				F6E2367627F448B300F3ABC0 /* TodayWeatherPresenter.swift */,
+				F6E2368027F4839E00F3ABC0 /* ForecastWeatherPresenter.swift */,
 			);
 			path = Presenters;
+			sourceTree = "<group>";
+		};
+		F6E2368427F489C300F3ABC0 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				F6E2368227F4841F00F3ABC0 /* BuilderModules.swift */,
+				F6E2367527F4480A00F3ABC0 /* Presenters */,
+				F6E2366F27F37D9200F3ABC0 /* Views */,
+				F6E2366A27F3621200F3ABC0 /* Models */,
+				F6E2367227F4420C00F3ABC0 /* Services */,
+			);
+			path = Main;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -140,7 +160,7 @@
 		F6E2364527F19A9E00F3ABC0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				BuildIndependentTargetsInParallel = 1;
+				BuildIndependentTargetsInParallel = NO;
 				LastSwiftUpdateCheck = 1330;
 				LastUpgradeCheck = 1330;
 				TargetAttributes = {
@@ -184,14 +204,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6E2368327F4841F00F3ABC0 /* BuilderModules.swift in Sources */,
+				F6E2367B27F481A400F3ABC0 /* ForecastWeatherViewModel.swift in Sources */,
 				F6E2367727F448B300F3ABC0 /* TodayWeatherPresenter.swift in Sources */,
-				F6E2365527F19A9E00F3ABC0 /* Utility.swift in Sources */,
+				F6E2367F27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift in Sources */,
+				F6E2368127F4839E00F3ABC0 /* ForecastWeatherPresenter.swift in Sources */,
 				F6E2366C27F3626A00F3ABC0 /* TodayWeatherApiModel.swift in Sources */,
 				F6E2367427F444B100F3ABC0 /* LocationService.swift in Sources */,
 				F6E2365127F19A9E00F3ABC0 /* AppDelegate.swift in Sources */,
 				F6E2367127F37DBF00F3ABC0 /* TodayWeatherVC.swift in Sources */,
+				F6E2367927F4810C00F3ABC0 /* ForecastWeatherApiModel.swift in Sources */,
 				F6E2366E27F3790700F3ABC0 /* TodayWeatherViewModel.swift in Sources */,
-				F6E2365327F19A9E00F3ABC0 /* SceneDelegate.swift in Sources */,
+				F6E2367D27F4828300F3ABC0 /* ForecastWeatherVC.swift in Sources */,
 				F6E2366827F19F9000F3ABC0 /* NetworkService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -334,11 +358,17 @@
 				DEVELOPMENT_TEAM = LV4QMTDDN4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "APP need your location for update actual weather";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "APP need your location for update actual weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -362,11 +392,17 @@
 				DEVELOPMENT_TEAM = LV4QMTDDN4;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = Weather/Info.plist;
+				INFOPLIST_KEY_NSLocationAlwaysAndWhenInUseUsageDescription = "APP need your location for update actual weather";
+				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "APP need your location for update actual weather";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIMainStoryboardFile = LaunchScreen;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
