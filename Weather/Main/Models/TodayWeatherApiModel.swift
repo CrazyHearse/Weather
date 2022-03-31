@@ -11,7 +11,7 @@ import Foundation
 struct TodayWeather: Codable {
     let current: Today
     let daily: [Daily]
-
+    
     enum CodingKeys: String, CodingKey {
         case current, daily
     }
@@ -24,7 +24,7 @@ struct Today: Codable {
     let windSpeed: Double
     let windDeg: Int
     let weather: [Weather]
-
+    
     enum CodingKeys: String, CodingKey {
         case temp
         case pressure
@@ -38,7 +38,7 @@ struct Today: Codable {
 struct Weather: Codable {
     let id: Int
     let main, weatherDescription, icon: String
-
+    
     enum CodingKeys: String, CodingKey {
         case id, main
         case weatherDescription = "description"
@@ -54,7 +54,7 @@ struct Daily: Codable {
     let pop: Double
     let snow: Double?
     let rain: Double?
-
+    
     enum CodingKeys: String, CodingKey {
         case temp
         case pressure

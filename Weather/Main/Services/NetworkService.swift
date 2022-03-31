@@ -23,16 +23,16 @@ class NetworkService {
     )
     {
         var url: String
-
+        
         switch request {
         case .current:
             url = getURLForTodayWeatherRequest(location: location)
         case .forecast:
             url = getURLForForecastWeatherRequest(location: location)
         }
-
+        
         guard let url = URL(string: url) else { return }
-
+        
         URLSession.shared.dataTask(with: url) {data, _, error in
             if let error = error {
                 completion(.failure(error))
@@ -46,7 +46,7 @@ class NetworkService {
             }
         }.resume()
     }
-
+    
     private func getURLForForecastWeatherRequest(location: Location) -> String {
         let locationParams = "lat=\(location.lat)&lon=\(location.lon)"
         let apiParam = "&appid=58bd69efeab05012a439738eaf288394"

@@ -12,25 +12,25 @@ struct ForecastWeather: Codable {
     var list: [WeatherForHour]
     let city: City
     
-// MARK: - List
+    // MARK: - List
     struct WeatherForHour: Codable {
         let dt: Int
         let main: MainClass
         let weather: [Weather]
     }
     
-// MARK: - MainClass
+    // MARK: - MainClass
     struct MainClass: Codable {
         let temp: Double
     }
     
-// MARK: - Weather
+    // MARK: - Weather
     struct Weather: Codable {
         let description: String
         let icon: String
     }
     
-// MARK: - City
+    // MARK: - City
     struct City: Codable {
         let name: String
     }

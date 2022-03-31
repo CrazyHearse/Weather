@@ -21,7 +21,7 @@
 		F6E2367D27F4828300F3ABC0 /* ForecastWeatherVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367C27F4828300F3ABC0 /* ForecastWeatherVC.swift */; };
 		F6E2367F27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2367E27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift */; };
 		F6E2368127F4839E00F3ABC0 /* ForecastWeatherPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2368027F4839E00F3ABC0 /* ForecastWeatherPresenter.swift */; };
-		F6E2368327F4841F00F3ABC0 /* BuilderModules.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2368227F4841F00F3ABC0 /* BuilderModules.swift */; };
+		F6E2368327F4841F00F3ABC0 /* Builder.swift in Sources */ = {isa = PBXBuildFile; fileRef = F6E2368227F4841F00F3ABC0 /* Builder.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +41,7 @@
 		F6E2367C27F4828300F3ABC0 /* ForecastWeatherVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherVC.swift; sourceTree = "<group>"; };
 		F6E2367E27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherTableViewCell.swift; sourceTree = "<group>"; };
 		F6E2368027F4839E00F3ABC0 /* ForecastWeatherPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForecastWeatherPresenter.swift; sourceTree = "<group>"; };
-		F6E2368227F4841F00F3ABC0 /* BuilderModules.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderModules.swift; sourceTree = "<group>"; };
+		F6E2368227F4841F00F3ABC0 /* Builder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Builder.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,7 +125,7 @@
 		F6E2368427F489C300F3ABC0 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				F6E2368227F4841F00F3ABC0 /* BuilderModules.swift */,
+				F6E2368227F4841F00F3ABC0 /* Builder.swift */,
 				F6E2367527F4480A00F3ABC0 /* Presenters */,
 				F6E2366F27F37D9200F3ABC0 /* Views */,
 				F6E2366A27F3621200F3ABC0 /* Models */,
@@ -204,7 +204,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F6E2368327F4841F00F3ABC0 /* BuilderModules.swift in Sources */,
+				F6E2368327F4841F00F3ABC0 /* Builder.swift in Sources */,
 				F6E2367B27F481A400F3ABC0 /* ForecastWeatherViewModel.swift in Sources */,
 				F6E2367727F448B300F3ABC0 /* TodayWeatherPresenter.swift in Sources */,
 				F6E2367F27F4834800F3ABC0 /* ForecastWeatherTableViewCell.swift in Sources */,

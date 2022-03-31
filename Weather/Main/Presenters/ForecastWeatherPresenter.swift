@@ -24,34 +24,34 @@ protocol ForecastWeatherViewPresenterProtocol: AnyObject {
 
 class ForecastWeatherPresenter: ForecastWeatherViewPresenterProtocol {
     weak var view: ForecastWeatherViewProtocol?
-
+    
     private var networkService = NetworkService()
-
+    
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue.global()
-
+    
     var forecastForView: ForecastWeatherViewModel?
-
+    
     private let locationService = LocationService()
-
+    
     var location: Location? {
         didSet {
             monitor.start(queue: queue)
         }
     }
-
+    
     required init(view: ForecastWeatherViewProtocol, networkService: NetworkService) {
         self.view = view
-
+        
         self.networkService = networkService
-
+        
         self.locationService.delegate = self
-
+        
         self.locationService.requestLocation()
-
+        
         self.view?.configureIndicator(animation: true)
-
-    // Checking internet connection
+        
+        // Checking internet connection
         monitor.pathUpdateHandler = { [weak self] path in
             guard let self = self else { return }
             if path.status == .satisfied {
@@ -67,46 +67,46 @@ class ForecastWeatherPresenter: ForecastWeatherViewPresenterProtocol {
             }
         }
     }
-
+    
     // Getting information from OpenWeatherMap
     func getWeather() {
         self.view?.configureIndicator(animation: true)
-
+        
         guard let location = self.location else { return }
-
+        
         networkService.getWeather(
             for: ForecastWeather.self,
             location: location,
             request: .forecast) { [weak self] result in
-            guard let self = self else { return }
-            DispatchQueue.main.async {
-                switch result {
-                case .success(let forecastWeather):
-                    self.view?.succesGettingData(
-                        model: self.prepareToView(
-                            forecast: forecastWeather!
+                guard let self = self else { return }
+                DispatchQueue.main.async {
+                    switch result {
+                    case .success(let forecastWeather):
+                        self.view?.succesGettingData(
+                            model: self.prepareToView(
+                                forecast: forecastWeather!
+                            )
                         )
-                    )
-                    self.locationService.stopUpdatingLocation()
-                    self.view?.configureIndicator(animation: false)
-                    self.monitor.cancel()
-                case .failure(let error):
-                    self.view?.failureGetingData(error: error)
+                        self.locationService.stopUpdatingLocation()
+                        self.view?.configureIndicator(animation: false)
+                        self.monitor.cancel()
+                    case .failure(let error):
+                        self.view?.failureGetingData(error: error)
+                    }
                 }
             }
-        }
     }
-
+    
     // Prepare APImodel to view
     private func prepareToView(forecast: ForecastWeather) -> ForecastWeatherViewModel {
         let dateFormatterForHours = DateFormatter()
         dateFormatterForHours.dateFormat = "HH:mm"
-
+        
         let dateFormatterForDays = DateFormatter()
         dateFormatterForDays.dateFormat = "EEEE"
-
+        
         var daysArray = [ForecastWeatherViewModel.Day]()
-
+        
         for day in forecast.list {
             let date = Date(timeIntervalSince1970: Double(day.dt))
             daysArray.append(
@@ -125,7 +125,7 @@ class ForecastWeatherPresenter: ForecastWeatherViewPresenterProtocol {
         )
         return forecastForView
     }
-
+    
     // Transform hours forecast to days forecast
     private func groupedForecast(forecast: [ForecastWeatherViewModel.Day]) -> [[ForecastWeatherViewModel.Day]] {
         var previousDay = forecast[0]
@@ -148,11 +148,11 @@ extension ForecastWeatherPresenter: LocationServiceDelegate {
     func didUpdateLocation(location: Location) {
         self.location = location
     }
-
+    
     func didntUpdateLocation() {
         self.locationService.requestLocation()
     }
-
+    
     func locationIsDisabled() {
         self.view?.configureIndicator(animation: true)
     }

@@ -1,5 +1,5 @@
 //
-//  BuilderModules.swift
+//  Builder.swift
 //  Weather
 //
 //  Created by Евгений Ерофеев on 30.03.22.
@@ -7,12 +7,12 @@
 
 import UIKit
 
-protocol BuilderModules {
+protocol Builder {
     static func createTodayWeatherModule() -> UIViewController
     static func createForecastWeatherModule() -> UIViewController
 }
 
-class ModulBuilder: BuilderModules {
+class ModulBuilder: Builder {
     static func createTodayWeatherModule() -> UIViewController {
         let view = TodayWeatherVC()
         let networkService = NetworkService()
@@ -20,7 +20,7 @@ class ModulBuilder: BuilderModules {
         view.presenter = presenter
         return view
     }
-
+    
     static func createForecastWeatherModule() -> UIViewController {
         let view = ForecastWeatherViewController()
         let networkService = NetworkService()

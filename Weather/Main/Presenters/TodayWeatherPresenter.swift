@@ -28,31 +28,31 @@ protocol TodayWeatherViewPresenterProtocol: AnyObject {
 
 class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
     weak var view: TodayWeatherViewProtocol?
-
+    
     private var networkService = NetworkService()
-
+    
     let locationService = LocationService()
-
+    
     private let monitor = NWPathMonitor()
     private let queue = DispatchQueue.global()
-
+    
     private var todayWeather: TodayWeather?
     private var todayLocation: LocationApi?
-
+    
     var todayWeatherForView: TodayWeatherViewModel?
-
+    
     var location: Location? {
         didSet {
             monitor.start(queue: queue)
         }
     }
-
+    
     required init(view: TodayWeatherViewProtocol, networkService: NetworkService) {
         self.view = view
         self.networkService = networkService
         self.locationService.delegate = self
         self.locationService.requestLocation()
-
+        
         monitor.pathUpdateHandler = { [weak self] path in
             if path.status == .satisfied {
                 DispatchQueue.main.async {
@@ -68,10 +68,10 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
             }
         }
     }
-
+    
     func getWeather() {
         self.view?.configureIndicator(animation: true)
-
+        
         guard let location = location else { return }
         let group = DispatchGroup()
         group.enter()
@@ -84,7 +84,7 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
                 switch result {
                 case .success(let todayLocation):
                     self?.todayLocation = todayLocation
-                        group.leave()
+                    group.leave()
                 case .failure(let error):
                     print(error.localizedDescription)
                     group.notify(queue: .main) {
@@ -127,10 +127,10 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
             self.monitor.cancel()
         }
     }
-
+    
     private func configureViewModel(todayWeather: TodayWeather, todayLocation: LocationApi) -> TodayWeatherViewModel {
         let windDirection = degreeToDirectionsConverting(degree: todayWeather.current.windDeg)
-
+        
         let precipitation = { ()-> [ String ] in
             var precipitation = [String]()
             if let snow = todayWeather.daily[0].snow {
@@ -144,7 +144,7 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
             }
             return precipitation
         }()
-
+        
         let todayWeatherForView = TodayWeatherViewModel(
             location: "\(self.todayLocation?.city.name ?? "") \(self.todayLocation?.city.country ?? "")",
             tempWithDescription:
@@ -159,16 +159,16 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
         )
         return todayWeatherForView
     }
-
+    
     @objc func share() {
         guard let todayWeather = self.todayWeather else { return }
         guard let todayLocation = self.todayLocation else { return }
-
+        
         let message = transformerFromWeatherToText(weather:
-            configureViewModel(
-                todayWeather: todayWeather,
-                todayLocation: todayLocation
-            )
+                                                    configureViewModel(
+                                                        todayWeather: todayWeather,
+                                                        todayLocation: todayLocation
+                                                    )
         )
         let objectsToShare = [message] as [Any]
         let activityVC = UIActivityViewController(
@@ -183,11 +183,11 @@ extension TodayWeatherPresenter: LocationServiceDelegate {
     func locationIsDisabled() {
         self.view?.locationIsDisabled()
     }
-
+    
     func didUpdateLocation(location: Location) {
         self.location = location
     }
-
+    
     func didntUpdateLocation() {
         self.view?.failureGettingLocation()
     }
@@ -204,7 +204,7 @@ extension TodayWeatherPresenter: LocationServiceDelegate {
             """
         return text
     }
-
+    
     func degreeToDirectionsConverting(degree: Int) -> String {
         switch degree {
         case 0...22, 337...360 :

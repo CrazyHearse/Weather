@@ -9,9 +9,9 @@ import UIKit
 
 class ForecastTableViewCell: UITableViewCell {
     static let identifier = "ForecastTableViewCell"
-
+    
     private let weatherImage = UIImageView()
-
+    
     private let timeLabel = UILabel()
     private let weatherDescriptionLabel = UILabel()
     private let temperatureLabel: UILabel = {
@@ -25,12 +25,12 @@ class ForecastTableViewCell: UITableViewCell {
         label.textAlignment  = .right
         return label
     }()
-
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
+        
         contentView.backgroundColor = UIColor(named: "backgroundColor")
-
+        
         [
             timeLabel,
             temperatureLabel,
@@ -38,43 +38,43 @@ class ForecastTableViewCell: UITableViewCell {
             weatherDescriptionLabel
         ].forEach( { contentView.addSubview($0) } )
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("super.init(coder: coder)")
     }
-
+    
     public func updateWeather(temperature: Int, time: String, image: UIImage, description: String) {
         temperatureLabel.text = "\(temperature)°"
         timeLabel.text = time
         weatherImage.image = image
         weatherDescriptionLabel.text = description
     }
-
+    
     override func prepareForReuse() {
         super.prepareForReuse()
-
+        
         temperatureLabel.text = nil
         timeLabel.text = nil
         imageView?.image = nil
         weatherDescriptionLabel.text = nil
     }
-
+    
     override func layoutSubviews() {
         super.layoutSubviews()
-
+        
         layoutItemsInCell()
     }
-
+    
     private func layoutItemsInCell() {
         let elementSize = contentView.frame.size.height - 12
-
+        
         [
             weatherImage,
             temperatureLabel,
             timeLabel,
             weatherDescriptionLabel
         ].forEach( { $0?.translatesAutoresizingMaskIntoConstraints = false } )
-
+        
         contentView.addConstraints(
             [
                 weatherImage.widthAnchor.constraint(equalToConstant: elementSize),

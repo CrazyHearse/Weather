@@ -24,11 +24,11 @@ class TodayWeatherVC: UIViewController {
     private let poleLabel = UILabel()
     private let imageview = UIImageView()
     private let shareButton = UIButton(type: .contactAdd)
-
+    
     var presenter: TodayWeatherPresenter!
-
+    
     private var todayWeather: TodayWeatherViewModel?
-
+    
     private lazy var nowWeatherLabel: UILabel = {
         let label = UILabel()
         label.font = .systemFont(ofSize: 30)
@@ -36,24 +36,24 @@ class TodayWeatherVC: UIViewController {
         label.minimumScaleFactor = 0.2
         return label
     }()
-
+    
     private lazy var noInternetView: UIView = {
         let view = gettingNoInternetView(frame: view.safeAreaLayoutGuide.layoutFrame)
         return view
     }()
-
+    
     private enum AlertType {
         case dataIsNotAvaible
         case locationDisabled
         case locationIsNotAvaible
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         configUI()
     }
-
+    
     // MARK: - Layouts
     override func viewWillLayoutSubviews() {
         disableTranslAutoresMaskIntoConstraints()
@@ -62,21 +62,21 @@ class TodayWeatherVC: UIViewController {
         layoutImages()
         layoutButton()
     }
-
+    
     // MARK: - Config elements
     private func configUI() {
         addViews()
         configStyles()
-
+        
         navigationController?.navigationBar.barTintColor = UIColor(named: "headersColor")
-
+        
         view.backgroundColor = UIColor(named: "backgroundColor")
-
+        
         noInternetView.isHidden = true
-
+        
         shareButton.addTarget(presenter, action: #selector(self.presenter.share), for: .touchUpInside)
     }
-
+    
     // MARK: - Adding views
     private func addViews() {
         view.addSubview(containerView)
@@ -99,7 +99,7 @@ class TodayWeatherVC: UIViewController {
             shareButton
         ].forEach( { containerView.addSubview($0) } )
     }
-
+    
     // MARK: - Config styles
     private func configStyles() {
         // Icons of weather parametrs config
@@ -109,7 +109,7 @@ class TodayWeatherVC: UIViewController {
         windSpeedImage.image = UIImage(named: "50d")
         poleImage.image = UIImage(named: "pole")
         nowWeatherImage.contentMode = .scaleAspectFit
-
+        
         // Activity indicator config
         activityIndicator.style = .large
         activityIndicator.backgroundColor = .systemBackground
@@ -117,14 +117,14 @@ class TodayWeatherVC: UIViewController {
         activityIndicator.hidesWhenStopped = true
         activityIndicator.backgroundColor = UIColor(named: "backgroundColor")
         activityIndicator.startAnimating()
-
+        
         // Button config
         shareButton.setTitle("Share", for: .normal)
         shareButton.tintColor = .orange
         
         // Location lable config
         nowWeatherLabel.textColor = .systemGray
-
+        
         // Lables text config
         [
             nowWeatherLabel,
@@ -141,13 +141,13 @@ class TodayWeatherVC: UIViewController {
             }
         )
     }
-
+    
     // MARK: - Alerts configer
     private func getRequiredAlert(type: AlertType) -> UIAlertController {
         let title = "Error"
         let messege: String
         let action: UIAlertAction
-
+        
         switch type {
         case .dataIsNotAvaible:
             messege = "Can't get actual data from network"
@@ -176,13 +176,13 @@ class TodayWeatherVC: UIViewController {
                 handler: { _ in self.presenter.locationService.requestLocation() }
             )
         }
-
+        
         let alert = UIAlertController(title: title, message: messege, preferredStyle: .alert)
         alert.addAction(action)
-
+        
         return alert
     }
-
+    
     // MARK: - Updating view data
     private func updateData() {
         guard let weather = todayWeather else { return }
@@ -207,7 +207,7 @@ extension TodayWeatherVC: TodayWeatherViewProtocol {
             completion: nil
         )
     }
-
+    
     func configureIndicator(animation: Bool) {
         if animation {
             activityIndicator.startAnimating()
@@ -215,7 +215,7 @@ extension TodayWeatherVC: TodayWeatherViewProtocol {
             activityIndicator.stopAnimating()
         }
     }
-
+    
     func checkedInternetConnection(connection: Bool) {
         if connection {
             noInternetView.isHidden = true
@@ -223,36 +223,36 @@ extension TodayWeatherVC: TodayWeatherViewProtocol {
             noInternetView.isHidden = false
         }
     }
-
+    
     func succesGettingData(model: TodayWeatherViewModel) {
         todayWeather = model
         updateData()
     }
-
+    
     func failureGettingData() {
         present(getRequiredAlert(type: .dataIsNotAvaible), animated: true, completion: nil)
     }
-
+    
     func failureGettingLocation() {
         present(getRequiredAlert(type: .locationIsNotAvaible), animated: true, completion: nil)
     }
-
+    
     func locationIsDisabled() {
         present(getRequiredAlert(type: .locationDisabled), animated: true, completion: nil)
     }
     func gettingNoInternetView(frame: CGRect) -> UIView {
         let noIntrenetView = UIView(frame: frame)
         let label = UILabel()
-
+        
         noIntrenetView.addSubview(label)
-
+        
         label.frame = CGRect(x: 0, y: 0, width: noIntrenetView.frame.size.width, height: 100)
         label.center = noIntrenetView.center
         label.text = "No internet connection\nPlease turn it ON"
         label.numberOfLines = 0
         label.textAlignment = .center
         noIntrenetView.backgroundColor = UIColor(named: "backgroundColor")
-
+        
         return noIntrenetView
     }
 }
@@ -273,7 +273,7 @@ private extension TodayWeatherVC {
             ]
         )
     }
-
+    
     func disableTranslAutoresMaskIntoConstraints() {
         [
             nowWeatherImage,
@@ -296,7 +296,7 @@ private extension TodayWeatherVC {
             activityIndicator
         ].forEach( { $0.translatesAutoresizingMaskIntoConstraints = false } )
     }
-
+    
     func layoutImages() {
         let width = view.safeAreaLayoutGuide.layoutFrame.size.width
         let widthConst = width / 7
@@ -304,7 +304,7 @@ private extension TodayWeatherVC {
         let halfHeight = view.safeAreaLayoutGuide.layoutFrame.size.height / 2
         let elemYConst = (halfHeight - 2 * widthConst) / 4
         let heightConst = halfHeight / 8
-
+        
         containerView.addConstraints(
             [
                 nowWeatherImage.centerXAnchor.constraint(equalTo: containerView.centerXAnchor),
@@ -367,10 +367,10 @@ private extension TodayWeatherVC {
             ]
         )
     }
-
+    
     func layoutLables() {
         let heightConst = view.safeAreaLayoutGuide.layoutFrame.size.height / 16
-
+        
         containerView.addConstraints(
             [
                 locationLabel.heightAnchor.constraint(equalToConstant: 0.5 * heightConst),
@@ -441,12 +441,12 @@ private extension TodayWeatherVC {
             ]
         )
     }
-
+    
     func layoutButton() {
         let widthConst = view.safeAreaLayoutGuide.layoutFrame.size.width / 7
         let halfHeight = view.safeAreaLayoutGuide.layoutFrame.size.height / 2
         let elemYConst = (halfHeight - 2 * widthConst) / 4
-
+        
         containerView.addConstraints(
             [
                 shareButton.heightAnchor.constraint(equalToConstant: elemYConst),
