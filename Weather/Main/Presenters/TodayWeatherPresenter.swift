@@ -197,7 +197,7 @@ extension TodayWeatherPresenter: LocationServiceDelegate {
             Actual weather for \(weather.location):
             Outdoor weather: \(weather.tempWithDescription)
             Probability of precipitation: \(weather.pop)
-            Precipitation: \(weather.precipitation)mm
+            Precipitation: \(weather.precipitation)
             Pressure: \(weather.pressure)
             Wind speed: \(weather.windSpeed)
             Wind direction: \(weather.windDirection)
