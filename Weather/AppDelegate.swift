@@ -52,8 +52,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         tabBarController?.viewControllers = tabViews.compactMap { UINavigationController(rootViewController: $0) }
         tabBarController?.tabBar.tintColor = UIColor(named: "colorForHeaders")
         tabBarController?.tabBar.unselectedItemTintColor = .darkGray
-        tabBarController?.tabBar.tintColor = .systemRed
+        tabBarController?.tabBar.tintColor = .systemBlue
         tabBarController?.tabBar.barTintColor = UIColor(named: "colorForHeaders")
+        tabBarController?.tabBar.backgroundColor = .white
         
         UINavigationBar.appearance().tintColor = UIColor(named: "secondaryBackground")
         

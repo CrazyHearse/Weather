@@ -16,7 +16,7 @@ class ForecastTableViewCell: UITableViewCell {
     private let weatherDescriptionLabel = UILabel()
     private let temperatureLabel: UILabel = {
         let label = UILabel()
-        label.textColor = .blue
+        label.textColor = .systemBlue
         label.font = .systemFont(ofSize: 60)
         label.adjustsFontSizeToFitWidth = true
         label.minimumScaleFactor = 0.25
