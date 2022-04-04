@@ -135,12 +135,12 @@ class TodayWeatherPresenter: TodayWeatherViewPresenterProtocol {
             var precipitation = [String]()
             if let snow = todayWeather.daily[0].snow {
                 precipitation.append("\(snow)mm")
-                precipitation.append("snow")
+                precipitation.append("snowing")
             } else if let rain = todayWeather.daily[0].rain {
                 precipitation.append("\(rain)mm")
-                precipitation.append("drop")
+                precipitation.append("precip")
             } else {
-                precipitation = ["0", "drop"]
+                precipitation = ["0", "precip"]
             }
             return precipitation
         }()

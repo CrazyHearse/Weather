@@ -104,7 +104,7 @@ class TodayWeatherVC: UIViewController {
     private func configStyles() {
         // Icons of weather parametrs config
         popImage.image = UIImage(named: "9d")
-        precipitationImage.image = UIImage(named: "9d")
+        precipitationImage.image = UIImage(named: "precip")
         pressureImage.image = UIImage(named: "hpa")
         windSpeedImage.image = UIImage(named: "50d")
         poleImage.image = UIImage(named: "pole")
@@ -188,7 +188,7 @@ class TodayWeatherVC: UIViewController {
         guard let weather = todayWeather else { return }
         popLabel.text = "\(weather.pop)"
         precipitationLable.text = "\(weather.precipitation)"
-        precipitationImage.image = UIImage(systemName: "\(weather.precipitationIcon)")
+        precipitationImage.image = UIImage(named: "\(weather.precipitationIcon)")
         pressureLabel.text = "\(weather.pressure)"
         windSpeedLabel.text = "\(weather.windSpeed)"
         poleLabel.text = "\(weather.windDirection)"
