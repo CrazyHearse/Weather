@@ -50,15 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         }
         
         tabBarController?.viewControllers = tabViews.compactMap { UINavigationController(rootViewController: $0) }
-        tabBarController?.tabBar.tintColor = UIColor(named: "colorForHeaders")
+        tabBarController?.tabBar.tintColor = UIColor(named: "headersColor")
         tabBarController?.tabBar.unselectedItemTintColor = .darkGray
         tabBarController?.tabBar.tintColor = .systemBlue
-        tabBarController?.tabBar.barTintColor = UIColor(named: "colorForHeaders")
+        tabBarController?.tabBar.barTintColor = UIColor(named: "headersColor")
         tabBarController?.tabBar.backgroundColor = .white
         
-        UINavigationBar.appearance().tintColor = UIColor(named: "secondaryBackground")
+        UINavigationBar.appearance().tintColor = UIColor(named: "backgroundColor")
         
-        window?.backgroundColor = UIColor(named: "secondaryBackground")
+        window?.backgroundColor = UIColor(named: "backgroundColor")
         window?.rootViewController = tabBarController
         window?.makeKeyAndVisible()
     }
